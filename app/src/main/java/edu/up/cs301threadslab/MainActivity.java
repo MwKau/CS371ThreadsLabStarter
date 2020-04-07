@@ -2,6 +2,7 @@ package edu.up.cs301threadslab;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -20,6 +21,9 @@ public class MainActivity extends Activity
     private Button theButton;
     private SeekBar theSeekBar;
 
+    // Creates a thread to update the animation
+    AnimationThread animationTick;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +40,17 @@ public class MainActivity extends Activity
         //Let me know when someone adjusts the seekbar
         theSeekBar = (SeekBar)findViewById(R.id.seekBar);
         theSeekBar.setOnSeekBarChangeListener(this);
+
+        try{
+            new Thread(new AnimationThread(myAV)).start();
+        } catch(NullPointerException e) {
+            Log.d("Thread","NullPointerException: Cannot create new thread");
+        }
     }//onClick
 
     @Override
     public void onClick(View v) {
+        Log.d("Thread","Button Pressed");
         myAV.postInvalidate();
     }
 
