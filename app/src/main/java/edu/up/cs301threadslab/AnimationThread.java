@@ -16,7 +16,7 @@ public class AnimationThread implements Runnable {
         for(;;) {
             myAV.postInvalidate();
             try {
-                Thread.sleep(3000);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
