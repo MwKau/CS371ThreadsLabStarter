@@ -21,9 +21,6 @@ public class MainActivity extends Activity
     private Button theButton;
     private SeekBar theSeekBar;
 
-    // Creates a thread to update the animation
-    AnimationThread animationTick;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
